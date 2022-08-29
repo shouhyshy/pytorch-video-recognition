@@ -123,7 +123,7 @@ def train_model(dataset=dataset, save_dir=save_dir, num_classes=num_classes, lr=
             for inputs, labels in tqdm(trainval_loaders[phase]):
                 # move inputs and labels to the device the training is taking place on
                 inputs = Variable(inputs, requires_grad=True).to(device)
-                labels = Variable(labels).to(device)
+                labels = Variable(labels).to(device)  # 原代码类型不匹配，labels为int型，CrossEntropyLoss输入须为long型
                 optimizer.zero_grad()
 
                 if phase == 'train':
